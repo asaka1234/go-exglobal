@@ -1,4 +1,4 @@
-package go_buy365
+package go_exglobal5
 
 func getHeaders() map[string]string {
 	return map[string]string{

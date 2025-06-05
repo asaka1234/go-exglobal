@@ -1,8 +1,8 @@
-package go_buy365
+package go_exglobal5
 
 import (
 	"crypto/tls"
-	"github.com/asaka1234/go-buy365/utils"
+	"github.com/asaka1234/go-exglobal5/utils"
 	"github.com/mitchellh/mapstructure"
 )
 

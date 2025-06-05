@@ -1,4 +1,4 @@
-package go_buy365
+package go_exglobal5
 
 import (
 	"fmt"

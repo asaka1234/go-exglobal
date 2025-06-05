@@ -1,4 +1,4 @@
-package go_buy365
+package go_exglobal5
 
 type Buy365InitParams struct {
 	MerchantId string `json:"merchantId" mapstructure:"merchantId" config:"merchantId"  yaml:"merchantId"` // merchantId
