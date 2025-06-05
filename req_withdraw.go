@@ -14,7 +14,7 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 	params["uid"] = cli.Params.MerchantId
-	params["channelCode"] = "BankDirect"
+	params["channelCode"] = "BankDirect" //写死
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)
