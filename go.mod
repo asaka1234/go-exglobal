@@ -1,4 +1,4 @@
-module github.com/asaka1234/go-exglobal5
+module github.com/asaka1234/go-exglobal
 
 go 1.24.2
 

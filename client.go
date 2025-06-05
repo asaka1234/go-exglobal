@@ -1,7 +1,7 @@
-package go_exglobal5
+package go_exglobal
 
 import (
-	"github.com/asaka1234/go-exglobal5/utils"
+	"github.com/asaka1234/go-exglobal/utils"
 	"github.com/go-resty/resty/v2"
 )
 

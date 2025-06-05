@@ -1,8 +1,8 @@
-package go_exglobal5
+package go_exglobal
 
 import (
 	"errors"
-	"github.com/asaka1234/go-exglobal5/utils"
+	"github.com/asaka1234/go-exglobal/utils"
 	"github.com/mitchellh/mapstructure"
 )
 

@@ -1,4 +1,4 @@
-package go_exglobal5
+package go_exglobal
 
 type ExglobalInitParams struct {
 	MerchantId int64  `json:"merchantId" mapstructure:"merchantId" config:"merchantId"  yaml:"merchantId"` // merchantId

@@ -1,4 +1,4 @@
-package go_exglobal5
+package go_exglobal
 
 import (
 	"fmt"
