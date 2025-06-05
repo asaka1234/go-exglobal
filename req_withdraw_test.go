@@ -8,7 +8,7 @@ import (
 func TestWithdraw(t *testing.T) {
 	vLog := VLog{}
 	//构造client
-	cli := NewClient(vLog, ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+	cli := NewClient(vLog, ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL, DEPOSIT_BACK_URL, WITHDRAW_BACK_URL})
 
 	//发请求
 	resp, err := cli.Withdraw(GenWithdrawRequestDemo())
