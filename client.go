@@ -6,13 +6,13 @@ import (
 )
 
 type Client struct {
-	Params Buy365InitParams
+	Params ExglobalInitParams
 
 	ryClient *resty.Client
 	logger   utils.Logger
 }
 
-func NewClient(logger utils.Logger, params Buy365InitParams) *Client {
+func NewClient(logger utils.Logger, params ExglobalInitParams) *Client {
 	return &Client{
 		Params: params,
 

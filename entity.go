@@ -1,143 +1,112 @@
 package go_exglobal5
 
-type Buy365InitParams struct {
-	MerchantId string `json:"merchantId" mapstructure:"merchantId" config:"merchantId"  yaml:"merchantId"` // merchantId
-	AccessKey  string `json:"accessKey" mapstructure:"accessKey" config:"accessKey"  yaml:"accessKey"`
-	BackKey    string `json:"backKey" mapstructure:"backKey" config:"backKey"  yaml:"backKey"`
+type ExglobalInitParams struct {
+	MerchantId int64  `json:"merchantId" mapstructure:"merchantId" config:"merchantId"  yaml:"merchantId"` // merchantId
+	AccessKey  string `json:"accessKey" mapstructure:"accessKey" config:"accessKey"  yaml:"accessKey"`     //接入秘钥
+	BackKey    string `json:"backKey" mapstructure:"backKey" config:"backKey"  yaml:"backKey"`             //回调秘钥
 
-	DepositUrl         string `json:"depositUrl" mapstructure:"depositUrl" config:"depositUrl"  yaml:"depositUrl"`
-	WithdrawUrl        string `json:"withdrawUrl" mapstructure:"withdrawUrl" config:"withdrawUrl"  yaml:"withdrawUrl"`
-	WithdrawConfirmUrl string `json:"withdrawConfirmUrl" mapstructure:"withdrawConfirmUrl" config:"withdrawConfirmUrl"  yaml:"withdrawConfirmUrl"`
-	OrderListUrl       string `json:"orderListUrl" mapstructure:"orderListUrl" config:"orderListUrl"  yaml:"orderListUrl"`
+	DepositUrl  string `json:"depositUrl" mapstructure:"depositUrl" config:"depositUrl"  yaml:"depositUrl"`
+	WithdrawUrl string `json:"withdrawUrl" mapstructure:"withdrawUrl" config:"withdrawUrl"  yaml:"withdrawUrl"`
 }
 
 // ----------pre order-------------------------
 
-type Buy365DepositReq struct {
-	OrderId     string `json:"order_id" mapstructure:"order_id"`           // 订单ID
-	OrderAmount string `json:"order_amount" mapstructure:"order_amount"`   // 订单金额
-	UserId      string `json:"user_id" mapstructure:"user_id"`             // 用户ID
-	OrderIp     string `json:"order_ip" mapstructure:"order_ip"`           // 订单IP
-	PayUserName string `json:"pay_user_name" mapstructure:"pay_user_name"` // 付款人姓名
-	//这个是buy365给分配的商户id
-	//SysNo string `json:"sys_no" mapstructure:"sys_no"` // 系统编号
-	//这个让sdk来赋值
-	//OrderTime string `json:"order_time" mapstructure:"order_time"` // 订单时间 格式:yyyy-MM-dd HH:mm:ss
+// 5.2. Create a collection order
+type ExglobalDepositReq struct {
+	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
+	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
+	ChannelCode      string  `json:"channelCode" mapstructure:"channelCode"`           //网银扫码:ScanQRCode, 银行直连:BankDirect
+	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
+	PaymentMethod    int     `json:"paymentMethod" mapstructure:"paymentMethod"`       //枚举: 1->JSON,3->平台收银台
+	//SDK帮计算
+	//Signature string `json:"signature" mapstructure:"signature"` //签名
+	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
+	//BankCode string `json:"bankCode" mapstructure:"bankCode"` //option, 如果用 ScanQRCode, 则这里填 AllBanksSupported
 }
 
-// 不管是正确/失败的通用字段返回
-type Buy365DepositCommonResponse struct {
-	Code   int    `json:"code"`   // 111 是正确
-	Status string `json:"status"` //success 是正确
-	Msg    string `json:"msg"`
-}
-
-type Buy365DepositResponse struct {
-	Code   int                        `json:"code" mapstructure:"code"`     // 111 是正确
-	Status string                     `json:"status" mapstructure:"status"` //success 是正确
-	Msg    string                     `json:"msg" mapstructure:"msg"`
-	Data   *Buy365DepositResponseData `json:"data" mapstructure:"data"`
-}
-
-type Buy365DepositResponseData struct {
-	OrderNo string `json:"order_no" mapstructure:"order_no"` // 订单编号
-	SendUrl string `json:"send_url" mapstructure:"send_url"` // 发送URL
-	UserId  string `json:"user_id" mapstructure:"user_id"`   // 用户ID
+type ExglobalDepositResponse struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` //true
+	Message string `json:"message" mapstructure:"message"`
+	Data    struct {
+		UID             int64   `json:"uid" mapstructure:"uid"`                         //商户号
+		MerchantOrderNo string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+		RecordId        int64   `json:"recordId" mapstructure:"recordId"`               //平台订单号
+		Amount          float64 `json:"amount" mapstructure:"amount"`                   //订单金额
+		URL             string  `json:"url" mapstructure:"url"`                         //收银台地址
+		QRCode          string  `json:"qrcode" mapstructure:"qrcode"`                   //二维码内容
+		MemoCode        string  `json:"memoCode" mapstructure:"memoCode"`               //附言码
+		//以下字段不会返回
+		BankId        *string `json:"bankId" mapstructure:"bankId"`
+		AccountNumber *string `json:"accountNumber" mapstructure:"accountNumber"`
+		BankOwner     *string `json:"bankOwner" mapstructure:"bankOwner"`
+		Signature     string  `json:"signature" mapstructure:"signature"`
+	} `json:"data" mapstructure:"data"`
 }
 
 // ------------------------------------------------------------
-type Buy365DepositCancelBackReq struct {
-	BillNo     string `json:"bill_no" mapstructure:"bill_no"`         // 唯一订单号，商户下单时传过来的order_id
-	BillStatus int    `json:"bill_status" mapstructure:"bill_status"` // 订单状态：1=订单已取消；2=订单已激活
-	SysNo      string `json:"sys_no" mapstructure:"sys_no"`           // 商户编号
-	Sign       string `json:"sign" mapstructure:"sign"`               // 签名，参照验签规范
+type ExglobalDepositBackReq struct {
+	RecordId        int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
+	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
+	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
+	MerchantOrderNo string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //TODO 要明确下
+	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
-type Buy365DepositSucceedBackReq struct {
-	BillNo string `json:"bill_no" mapstructure:"bill_no"` // 必须包含订单号
-	Amount string `json:"amount" mapstructure:"amount"`   // 必须是数字字符串
-	SysNo  string `json:"sys_no" mapstructure:"sys_no"`   // 必须包含商户号
-	Sign   string `json:"sign" mapstructure:"sign"`       // 必须包含签名
+type ExglobalDepositBackResp struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` // 必须包含签名
+	Message string `json:"message" mapstructure:"message"`
+	Data    string `json:"data" mapstructure:"data"`
 }
 
 //===========withdraw===================================
 
-type Buy365WithdrawReq struct {
-	Data []Buy365WithdrawData `json:"data" mapstructure:"data"` // 申请sys_no唯一标识 610001
-	//这个是buy365给分配的商户id ,sdk来赋值
-	//SysNo string `json:"sys_no" mapstructure:"sys_no"` // 申请sys_no唯一标识 610001号
+type ExglobalWithdrawReq struct {
+	MerchantOrderNo  string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号
+	CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
+	ChannelCode      string `json:"channelCode" mapstructure:"channelCode"`
+	Amount           string `json:"amount" mapstructure:"amount"` //不支持小数
+	BankCode         string `json:"bankCode" mapstructure:"bankCode"`
+	BankName         string `json:"bankName" mapstructure:"bankName"`
+	BankBranchName   string `json:"bankBranchName" mapstructure:"bankBranchName"`
+	BankUserName     string `json:"bankUserName" mapstructure:"bankUserName"`
+	BankAccount      string `json:"bankAccount" mapstructure:"bankAccount"`
+	//以下sdk帮搞
+	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户编码
+	//Signature string `json:"signature" mapstructure:"signature"` //签名
 }
 
-type Buy365WithdrawData struct {
-	UserName    string `json:"user_name" mapstructure:"user_name"`       // 真实姓名
-	BankCardNo  string `json:"bankcard_no" mapstructure:"bankcard_no"`   // 卡号
-	SerialNo    string `json:"serial_no" mapstructure:"serial_no"`       // 订单号
-	BankAddress string `json:"bank_address" mapstructure:"bank_address"` // 支行地址
-	Amount      string `json:"amount" mapstructure:"amount"`             // 金额
+type ExglobalWithdrawResponse struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` //true
+	Message string `json:"message" mapstructure:"message"`
+	Data    struct {
+		Uid              int64  `json:"uid" mapstructure:"channelCode"`                 //商户编号
+		MerchantOrderNo  string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+		RecordId         int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
+		Amount           string `json:"amount" mapstructure:"amount"`
+		CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
+		BankName         string `json:"bankName" mapstructure:"bankName"`
+		BankBranchName   string `json:"bankBranchName" mapstructure:"bankBranchName"`
+		BankUserName     string `json:"bankUserName" mapstructure:"bankUserName"`
+		BankAccount      string `json:"bankAccount" mapstructure:"bankAccount"`
+	} `json:"data" mapstructure:"data"`
 }
 
-type Buy365WithdrawResponse struct {
-	Code int    `json:"code"` //200是成功
-	Msg  string `json:"msg"`
+type ExglobalWithdrawBackReq struct {
+	RecordId        int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
+	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
+	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
+	MerchantOrderNo string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //TODO 要明确下
+	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
-type Buy365WithdrawCancelBackReq struct {
-	BillNo     string `json:"bill_no" mapstructure:"bill_no"`         // 唯一订单号，商户下单时传过来的order_id
-	BillStatus int    `json:"bill_status" mapstructure:"bill_status"` // 订单状态：1=订单已取消；2=订单已激活
-	SysNo      string `json:"sys_no" mapstructure:"sys_no"`           // 商户编号
-	Sign       string `json:"sign" mapstructure:"sign"`               // 签名，参照验签规范
-}
-
-type Buy365WithdrawSucceedBackReq struct {
-	BillNo string `json:"bill_no" mapstructure:"bill_no"` // 唯一订单号，商户下单时传过来的order_id
-	Amount string `json:"amount" mapstructure:"amount"`   //订单金额
-	SysNo  string `json:"sys_no" mapstructure:"sys_no"`   //商户编号
-	Sign   string `json:"sign" mapstructure:"sign"`       //签名，参照验签规范
-}
-
-// ----------withdraw confirm-------------------------
-
-// callback以后,还要单独发个请求再来查询下.
-type Buy365WithdrawConfirmReq struct {
-	Ids string `json:"ids" mapstructure:"ids"` //确认收款订单列表接口中获取的id，用英文逗号“,”拼接起来
-	//这个是buy365给分配的商户id ,sdk来赋值
-	//SysNo string `json:"sys_no" mapstructure:"sys_no"` // 申请sys_no唯一标识 610001号
-}
-
-type Buy365WithdrawConfirmResponse struct {
-	Code string `json:"code"` //
-	Msg  string `json:"msg"`
-}
-
-// =================单独请求===============================
-
-type Buy365OrderListRsp struct {
-	Code   string                `json:"code"` //
-	Msg    string                `json:"msg"`
-	Result Buy365OrderPageResult `json:"result"`
-}
-
-type Buy365OrderPageResult struct {
-	TotalCount string             `json:"totalCount"` // 总记录数
-	TotalPage  int64              `json:"totalPage"`  // 总页数
-	Page       int64              `json:"page"`       // 当前页码
-	Data       []*Buy365OrderData `json:"data"`       // 订单数据列表
-}
-
-type Buy365OrderData struct {
-	ID                       string `json:"id"`
-	SysSerialNo              string `json:"sysSerialNo"`
-	Amount                   string `json:"amount"`
-	PayType                  string `json:"payType"`
-	UserName                 string `json:"userName"`
-	BankCardNo               string `json:"bankCardNo"`
-	BankAddress              string `json:"bankAddress"`
-	ChangeRate               string `json:"changeRate"`
-	HandlingFee              string `json:"handlingFee"`
-	MerchantSettleUSDTNumber string `json:"merchantSettleUSDTNumber"`
-	SerialNo                 string `json:"serialNo"`
-	CreateTime               string `json:"createTime"`
-	Remark                   string `json:"remark"`
-	NumRow                   string `json:"numRow"`
-	StatusName               string `json:"statusName"`
+type ExglobalWithdrawBackResp struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` // 必须包含签名
+	Message string `json:"message" mapstructure:"message"`
+	Data    string `json:"data" mapstructure:"data"`
 }

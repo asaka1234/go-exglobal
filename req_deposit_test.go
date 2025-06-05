@@ -8,7 +8,7 @@ import (
 func TestDeposit(t *testing.T) {
 
 	//构造client
-	cli := NewClient(nil, Buy365InitParams{MERCHANT_ID, ACCESS_KEY, BACK_KEY, DEPOSIT_URL, WITHDRAW_URL, WITHDRAW_CONFIRM_URL, ORDERLIST_URL})
+	cli := NewClient(nil, ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
 
 	//发请求
 	resp, err := cli.Deposit(GenDepositRequestDemo())
@@ -19,12 +19,12 @@ func TestDeposit(t *testing.T) {
 	fmt.Printf("resp:%+v\n", resp)
 }
 
-func GenDepositRequestDemo() Buy365DepositReq {
-	return Buy365DepositReq{
-		OrderId:     "3234", //商户uid
-		UserId:      "30779639363",
-		OrderIp:     "18.29.120.32",
-		OrderAmount: "60000.00",
-		PayUserName: "你好", //商户订单号
+func GenDepositRequestDemo() ExglobalDepositReq {
+	return ExglobalDepositReq{
+		MerchantOrderNo:  "323224", //商户id
+		CurrencyCoinName: "VND",
+		ChannelCode:      "18.29.120.32",
+		Amount:           100,
+		PaymentMethod:    3, //商户订单号
 	}
 }

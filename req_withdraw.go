@@ -2,35 +2,31 @@ package go_exglobal5
 
 import (
 	"crypto/tls"
-	"encoding/json"
 	"github.com/asaka1234/go-exglobal5/utils"
+	"github.com/mitchellh/mapstructure"
 )
 
 // withdraw
-func (cli *Client) Withdraw(req Buy365WithdrawReq) (*Buy365WithdrawResponse, error) {
+func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse, error) {
 
 	rawURL := cli.Params.WithdrawUrl
 
-	jsonData, err := json.Marshal(req.Data)
-	if err != nil {
-		return nil, err
-	}
-	params := make(map[string]interface{})
-	params["data"] = string(jsonData)
-	params["sys_no"] = cli.Params.MerchantId
+	var params map[string]interface{}
+	mapstructure.Decode(req, &params)
+	params["uid"] = cli.Params.MerchantId
 
 	//签名
-	signStr := utils.SignWithdraw(params, cli.Params.AccessKey)
-	params["sign"] = signStr
+	signStr := utils.Sign(params, cli.Params.AccessKey)
+	params["signature"] = signStr
 
 	//返回值会放到这里
-	var result Buy365WithdrawResponse
+	var result ExglobalWithdrawResponse
 
-	_, err = cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
+	_, err := cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
 		SetCloseConnection(true).
 		R().
 		SetHeaders(getHeaders()).
-		SetMultipartFormData(utils.ConvertToStringMap(params)).
+		SetBody(params).
 		SetResult(&result).
 		Post(rawURL)
 

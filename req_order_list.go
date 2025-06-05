@@ -5,7 +5,7 @@ import (
 	"github.com/asaka1234/go-exglobal5/utils"
 )
 
-func (cli *Client) GetOrderList() (*Buy365OrderListRsp, error) {
+func (cli *Client) GetOrderList() (*ExglobalOrderListRsp, error) {
 
 	rawURL := cli.Params.OrderListUrl
 
@@ -18,7 +18,7 @@ func (cli *Client) GetOrderList() (*Buy365OrderListRsp, error) {
 	params["sign"] = signStr
 
 	//返回值会放到这里
-	var result Buy365OrderListRsp
+	var result ExglobalOrderListRsp
 
 	_, err := cli.ryClient.SetTLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
 		SetCloseConnection(true).
