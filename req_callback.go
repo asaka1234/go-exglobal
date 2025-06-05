@@ -7,7 +7,7 @@ import (
 )
 
 // 充值的回调处理(传入一个处理函数)
-func (cli *Client) DepositCancelCallback(req ExglobalDepositBackReq, processor func(ExglobalDepositBackReq) error) error {
+func (cli *Client) DepositCallback(req ExglobalDepositBackReq, processor func(ExglobalDepositBackReq) error) error {
 	//验证签名
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
