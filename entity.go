@@ -15,13 +15,13 @@ type ExglobalInitParams struct {
 type ExglobalDepositReq struct {
 	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
 	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
-	ChannelCode      string  `json:"channelCode" mapstructure:"channelCode"`           //网银扫码:ScanQRCode, 银行直连:BankDirect
 	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
 	PaymentMethod    int     `json:"paymentMethod" mapstructure:"paymentMethod"`       //枚举: 1->JSON,3->平台收银台
 	//SDK帮计算
 	//Signature string `json:"signature" mapstructure:"signature"` //签名
 	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
 	//BankCode string `json:"bankCode" mapstructure:"bankCode"` //option, 如果用 ScanQRCode, 则这里填 AllBanksSupported
+	//ChannelCode      string  `json:"channelCode" mapstructure:"channelCode"`           //网银扫码:ScanQRCode, 银行直连:BankDirect
 }
 
 type ExglobalDepositResponse struct {
@@ -66,8 +66,7 @@ type ExglobalDepositBackResp struct {
 type ExglobalWithdrawReq struct {
 	MerchantOrderNo  string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号
 	CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
-	ChannelCode      string `json:"channelCode" mapstructure:"channelCode"`
-	Amount           string `json:"amount" mapstructure:"amount"` //不支持小数
+	Amount           string `json:"amount" mapstructure:"amount"`                     //不支持小数
 	BankCode         string `json:"bankCode" mapstructure:"bankCode"`
 	BankName         string `json:"bankName" mapstructure:"bankName"`
 	BankBranchName   string `json:"bankBranchName" mapstructure:"bankBranchName"`
@@ -75,6 +74,7 @@ type ExglobalWithdrawReq struct {
 	BankAccount      string `json:"bankAccount" mapstructure:"bankAccount"`
 	//以下sdk帮搞
 	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户编码
+	//ChannelCode      string `json:"channelCode" mapstructure:"channelCode"` //写死 BankDirect
 	//Signature string `json:"signature" mapstructure:"signature"` //签名
 }
 

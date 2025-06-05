@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/samber/lo"
 	"github.com/spf13/cast"
-	"net/url"
 	"sort"
+	"strings"
 )
 
 // 计算请求签名
@@ -15,24 +15,21 @@ func Sign(params map[string]interface{}, accessKey string) string {
 	sort.Strings(keys)
 
 	//拼接签名原始字符串
-	rawString := ""
-	lo.ForEach(keys, func(x string, index int) {
-		value := cast.ToString(params[x])
-		value = url.QueryEscape(value)
-		rawString += fmt.Sprintf("%s=%s", x, value)
-
-		if index != len(params)-1 {
-			//不是最后一个,则拼接
-			rawString += "&"
+	var sb strings.Builder
+	for _, k := range keys {
+		value := cast.ToString(params[k])
+		if k != "signature" && value != "" {
+			//只有非空才可以参与签名
+			sb.WriteString(fmt.Sprintf("%s=%s&", k, value))
 		}
-	})
-	// 3. 将secretKey拼接到最后
-	rawString += accessKey
+	}
+	sb.WriteString(fmt.Sprintf("key=%s", accessKey))
+	signStr := sb.String()
 
-	fmt.Printf("[rawString]%s\n", rawString)
+	fmt.Printf("[rawString]%s\n", signStr)
 
 	//4. 计算md5签名
-	signResult := GetMD5([]byte(rawString))
+	signResult := GetMD5([]byte(signStr))
 	return signResult
 }
 

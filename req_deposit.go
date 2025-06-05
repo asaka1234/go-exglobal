@@ -14,6 +14,8 @@ func (cli *Client) Deposit(req ExglobalDepositReq) (*ExglobalDepositResponse, er
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 	params["uid"] = cli.Params.MerchantId
+	params["channelCode"] = "ScanQRCode"     //写死
+	params["bankCode"] = "AllBanksSupported" //写死
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)

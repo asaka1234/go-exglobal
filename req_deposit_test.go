@@ -5,10 +5,26 @@ import (
 	"testing"
 )
 
-func TestDeposit(t *testing.T) {
+type VLog struct {
+}
 
+func (l VLog) Debugf(format string, args ...interface{}) {
+	fmt.Printf(format+"\n", args...)
+}
+func (l VLog) Infof(format string, args ...interface{}) {
+	fmt.Printf(format+"\n", args...)
+}
+func (l VLog) Warnf(format string, args ...interface{}) {
+	fmt.Printf(format+"\n", args...)
+}
+func (l VLog) Errorf(format string, args ...interface{}) {
+	fmt.Printf(format+"\n", args...)
+}
+
+func TestDeposit(t *testing.T) {
+	vLog := VLog{}
 	//构造client
-	cli := NewClient(nil, ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+	cli := NewClient(vLog, ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
 
 	//发请求
 	resp, err := cli.Deposit(GenDepositRequestDemo())
@@ -21,10 +37,10 @@ func TestDeposit(t *testing.T) {
 
 func GenDepositRequestDemo() ExglobalDepositReq {
 	return ExglobalDepositReq{
-		MerchantOrderNo:  "323224", //商户id
+		MerchantOrderNo:  "323231224", //商户id
 		CurrencyCoinName: "VND",
-		ChannelCode:      "18.29.120.32",
-		Amount:           100,
-		PaymentMethod:    3, //商户订单号
+		//ChannelCode:      "ScanQRCode",
+		Amount:        100000,
+		PaymentMethod: 1,
 	}
 }
