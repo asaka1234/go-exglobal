@@ -52,13 +52,13 @@ type ExglobalDepositBackReq struct {
 	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
 	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
 	MerchantOrderNo string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
-	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //TODO 要明确下
+	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //2支付中, 3支付完成, 4支付失败
 	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
 type ExglobalDepositBackResp struct {
-	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
-	Success bool   `json:"success" mapstructure:"success"` // 必须包含签名
+	Code    int    `json:"code" mapstructure:"code"` // 1是成功
+	Success bool   `json:"success" mapstructure:"success"`
 	Message string `json:"message" mapstructure:"message"`
 	Data    string `json:"data" mapstructure:"data"`
 }
@@ -102,13 +102,13 @@ type ExglobalWithdrawBackReq struct {
 	UID             int64  `json:"uid" mapstructure:"uid"`                         //商户号
 	OrderAmount     string `json:"orderAmount" mapstructure:"orderAmount"`         //订单金额与下单实际金额一致
 	MerchantOrderNo string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
-	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //TODO 要明确下
+	TradeStatus     int    `json:"tradeStatus" mapstructure:"tradeStatus"`         //2支付中, 3支付完成, 4支付失败
 	Signature       string `json:"signature" mapstructure:"signature"`
 }
 
 type ExglobalWithdrawBackResp struct {
-	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
-	Success bool   `json:"success" mapstructure:"success"` // 必须包含签名
+	Code    int    `json:"code" mapstructure:"code"` // 1是成功
+	Success bool   `json:"success" mapstructure:"success"`
 	Message string `json:"message" mapstructure:"message"`
 	Data    string `json:"data" mapstructure:"data"`
 }
