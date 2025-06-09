@@ -29,6 +29,7 @@ func (cli *Client) Deposit(req ExglobalDepositReq) (*ExglobalDepositResponse, er
 		R().
 		SetHeaders(getHeaders()).
 		SetBody(params).
+		SetDebug(cli.debugMode).
 		SetResult(&result).
 		Post(rawURL)
 

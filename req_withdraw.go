@@ -28,6 +28,7 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 		R().
 		SetHeaders(getHeaders()).
 		SetBody(params).
+		SetDebug(cli.debugMode).
 		SetResult(&result).
 		Post(rawURL)
 
