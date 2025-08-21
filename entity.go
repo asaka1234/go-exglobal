@@ -19,6 +19,10 @@ type ExglobalDepositReq struct {
 	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
 	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
 	PaymentMethod    int     `json:"paymentMethod" mapstructure:"paymentMethod"`       //枚举: 1->JSON,3->平台收银台
+	CustomerName     string  `json:"customerName" mapstructure:"customerName"`         //客户姓名（只IDR币种需要）
+	CustomerEmail    string  `json:"customerEmail" mapstructure:"customerEmail"`       //客户邮箱（只IDR币种需要）
+	CustomerPhone    string  `json:"customerPhone" mapstructure:"customerPhone"`       //客户手机号（只IDR币种需要）
+	Memo             string  `json:"memo" mapstructure:"memo"`                         //备注（只IDR币种需要）
 	//SDK帮计算
 	//Signature string `json:"signature" mapstructure:"signature"` //签名
 	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
@@ -74,6 +78,9 @@ type ExglobalWithdrawReq struct {
 	BankBranchName   string `json:"bankBranchName" mapstructure:"bankBranchName"`
 	BankUserName     string `json:"bankUserName" mapstructure:"bankUserName"`
 	BankAccount      string `json:"bankAccount" mapstructure:"bankAccount"`
+	CustomerPhone    string `json:"customerPhone" mapstructure:"customerPhone"` // 客户手机号 用于：INR、IDR
+	CustomerEmail    string `json:"customerEmail" mapstructure:"customerEmail"` // 客户邮箱 用于：IDR
+	Memo             string `json:"memo" mapstructure:"memo"`                   // 备注 IDR必填
 	//以下sdk帮搞
 	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户编码
 	//ChannelCode      string `json:"channelCode" mapstructure:"channelCode"` //写死 BankDirect

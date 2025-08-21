@@ -16,7 +16,15 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 	params["uid"] = cli.Params.MerchantId
-	params["channelCode"] = "BankDirect" //写死
+	if req.CurrencyCoinName == "THB" {
+		params["channelCode"] = "THBBankDirect" // 公司账户渠道
+	} else if req.CurrencyCoinName == "IDR" {
+		params["channelCode"] = "JYBankDirect" // 公司账户渠道
+	} else if req.CurrencyCoinName == "INR" {
+		params["channelCode"] = "JAZBankPayout"
+	} else {
+		params["channelCode"] = "BankDirect" //写死
+	}
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)

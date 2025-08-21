@@ -16,8 +16,19 @@ func (cli *Client) Deposit(req ExglobalDepositReq) (*ExglobalDepositResponse, er
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 	params["uid"] = cli.Params.MerchantId
-	params["channelCode"] = "ScanQRCode"     //写死
-	params["bankCode"] = "AllBanksSupported" //写死
+	if req.CurrencyCoinName == "VND" {
+		params["channelCode"] = "ScanQRCode"     //写死
+		params["bankCode"] = "AllBanksSupported" //写死
+	} else if req.CurrencyCoinName == "INR" {
+		params["channelCode"] = "JAZUpiScanPayin"
+		params["bankCode"] = "AllBanksSupported"
+	} else if req.CurrencyCoinName == "IDR" {
+		params["channelCode"] = "JYQris"
+		params["bankCode"] = "AllBanksSupported"
+	} else if req.CurrencyCoinName == "THB" {
+		params["channelCode"] = "THBScanQRCode"
+		params["bankCode"] = "AllBanksSupported"
+	}
 
 	//签名
 	signStr := utils.Sign(params, cli.Params.AccessKey)

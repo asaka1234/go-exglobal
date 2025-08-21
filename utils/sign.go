@@ -18,7 +18,7 @@ func Sign(params map[string]interface{}, accessKey string) string {
 	var sb strings.Builder
 	for _, k := range keys {
 		value := cast.ToString(params[k])
-		if k != "signature" && value != "" {
+		if k != "signature" && k != "memo" && value != "" {
 			//只有非空才可以参与签名
 			sb.WriteString(fmt.Sprintf("%s=%s&", k, value))
 		}
