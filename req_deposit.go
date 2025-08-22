@@ -24,7 +24,7 @@ func (cli *Client) Deposit(req ExglobalDepositReq) (*ExglobalDepositResponse, er
 		params["bankCode"] = "AllBanksSupported"
 	} else if req.CurrencyCoinName == "IDR" {
 		params["channelCode"] = "JYQris"
-		params["bankCode"] = "AllBanksSupported"
+		// 不开启银行不用加bankCode
 	} else if req.CurrencyCoinName == "THB" {
 		params["channelCode"] = "THBScanQRCode"
 		params["bankCode"] = "AllBanksSupported"
