@@ -50,6 +50,30 @@ type ExglobalDepositResponse struct {
 	} `json:"data" mapstructure:"data"`
 }
 
+// 聚合支付
+type ExglobalDepositAggregateReq struct {
+	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
+	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
+	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
+
+	//SDK帮计算
+	//Signature string `json:"signature" mapstructure:"signature"` //签名
+	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
+}
+
+type ExglobalDepositAggregateRsp struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` //true
+	Message string `json:"message" mapstructure:"message"`
+	Data    struct {
+		UID             string  `json:"uid" mapstructure:"uid"`                         //商户号
+		MerchantOrderNo string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+		Amount          float64 `json:"amount" mapstructure:"amount"`                   //订单金额
+		URL             string  `json:"url" mapstructure:"url"`                         //收银台地址
+		Signature       string  `json:"signature" mapstructure:"signature"`
+	} `json:"data" mapstructure:"data"`
+}
+
 // ------------------------------------------------------------
 type ExglobalDepositBackReq struct {
 	RecordId        int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号

@@ -56,6 +56,28 @@ func TestGetPaymentChannelList(t *testing.T) {
 	}
 }
 
+func TestDepositAggregate(t *testing.T) {
+	vLog := VLog{}
+	//构造client
+	cli := NewClient(vLog, &ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
+
+	//发请求
+	resp, err := cli.DepositAggregate(GenDepositAggregateRequestDemo())
+	if err != nil {
+		fmt.Printf("err:%s\n", err.Error())
+		return
+	}
+	fmt.Printf("resp:%+v\n", resp)
+}
+
+func GenDepositAggregateRequestDemo() ExglobalDepositAggregateReq {
+	return ExglobalDepositAggregateReq{
+		MerchantOrderNo:  "3232312243", //商户id
+		CurrencyCoinName: "IDR",
+		Amount:           100000,
+	}
+}
+
 func TestDeposit(t *testing.T) {
 	vLog := VLog{}
 	//构造client
