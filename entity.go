@@ -116,15 +116,15 @@ type ExglobalWithdrawResponse struct {
 	Success bool   `json:"success" mapstructure:"success"` //true
 	Message string `json:"message" mapstructure:"message"`
 	Data    struct {
-		Uid              int64  `json:"uid" mapstructure:"channelCode"`                 //商户编号
-		MerchantOrderNo  string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
-		RecordId         int64  `json:"recordId" mapstructure:"recordId"`               //平台订单号
-		Amount           string `json:"amount" mapstructure:"amount"`
-		CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
-		BankName         string `json:"bankName" mapstructure:"bankName"`
-		BankBranchName   string `json:"bankBranchName" mapstructure:"bankBranchName"`
-		BankUserName     string `json:"bankUserName" mapstructure:"bankUserName"`
-		BankAccount      string `json:"bankAccount" mapstructure:"bankAccount"`
+		Uid              int64   `json:"uid" mapstructure:"channelCode"`                 //商户编号
+		MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+		RecordId         int64   `json:"recordId" mapstructure:"recordId"`               //平台订单号
+		Amount           float64 `json:"amount" mapstructure:"amount"`
+		CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //VND
+		BankName         string  `json:"bankName" mapstructure:"bankName"`
+		BankBranchName   string  `json:"bankBranchName" mapstructure:"bankBranchName"`
+		BankUserName     string  `json:"bankUserName" mapstructure:"bankUserName"`
+		BankAccount      string  `json:"bankAccount" mapstructure:"bankAccount"`
 	} `json:"data" mapstructure:"data"`
 }
 
