@@ -31,7 +31,7 @@ func (cli *Client) Deposit(req ExglobalDepositReq) (*ExglobalDepositResponse, er
 	}
 
 	//签名
-	signStr := utils.Sign(params, cli.Params.AccessKey)
+	signStr := utils.Sign(params, cli.Params.AccessKey, req.CurrencyCoinName)
 	params["signature"] = signStr
 
 	//返回值会放到这里

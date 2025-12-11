@@ -35,7 +35,7 @@ func TestGetPaymentChannelList(t *testing.T) {
 
 	params := make(map[string]interface{}, 1)
 	params["uid"] = MERCHANT_ID
-	signStr := utils.Sign(params, ACCESS_SECRET)
+	signStr := utils.Sign(params, ACCESS_SECRET, "INR")
 
 	resp, err := client.R().
 		SetHeader("Content-Type", "application/json").
