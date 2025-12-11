@@ -12,7 +12,7 @@ func (cli *Client) DepositCallback(req ExglobalDepositBackReq, processor func(Ex
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 
-	verifyResult := utils.VerifySign(params, cli.Params.BackKey)
+	verifyResult := utils.VerifySign(params, cli.Params.BackKey, "")
 	if !verifyResult {
 		//验签失败
 		return errors.New("verify sign error!")
@@ -33,7 +33,7 @@ func (cli *Client) WithdrawCallBack(req ExglobalWithdrawBackReq, processor func(
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 
-	verifyResult := utils.VerifySign(params, cli.Params.BackKey)
+	verifyResult := utils.VerifySign(params, cli.Params.BackKey, "")
 	if !verifyResult {
 		//验签失败
 		return errors.New("verify sign error!")

@@ -9,7 +9,7 @@ import (
 )
 
 // 计算请求签名
-func Sign(params map[string]interface{}, accessKey string) string {
+func Sign(params map[string]interface{}, accessKey string, ccy string) string {
 
 	keys := lo.Keys(params)
 	sort.Strings(keys)
@@ -18,7 +18,10 @@ func Sign(params map[string]interface{}, accessKey string) string {
 	var sb strings.Builder
 	for _, k := range keys {
 		value := cast.ToString(params[k])
-		if k != "signature" && k != "memo" && k != "bankCode" && value != "" {
+		if ccy == "INR" && k == "bankCode" {
+			continue
+		}
+		if k != "signature" && k != "memo" && value != "" {
 			//只有非空才可以参与签名
 			sb.WriteString(fmt.Sprintf("%s=%s&", k, value))
 		}
@@ -34,7 +37,7 @@ func Sign(params map[string]interface{}, accessKey string) string {
 }
 
 // 验证签名
-func VerifySign(params map[string]interface{}, signKey string) bool {
+func VerifySign(params map[string]interface{}, signKey string, ccy string) bool {
 	// Check if sign exists in params
 	signValue, exists := params["signature"]
 	if !exists {
@@ -46,7 +49,7 @@ func VerifySign(params map[string]interface{}, signKey string) bool {
 	delete(params, "signature")
 
 	// Generate current signature
-	currentKey := Sign(params, signKey)
+	currentKey := Sign(params, signKey, ccy)
 
 	// Compare the signatures
 	return key == currentKey

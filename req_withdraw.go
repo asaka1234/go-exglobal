@@ -6,6 +6,7 @@ import (
 	"github.com/asaka1234/go-exglobal/utils"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/mitchellh/mapstructure"
+	"github.com/samber/lo"
 )
 
 // withdraw
@@ -16,19 +17,22 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	var params map[string]interface{}
 	mapstructure.Decode(req, &params)
 	params["uid"] = cli.Params.MerchantId
-	if req.CurrencyCoinName == "THB" {
-		params["channelCode"] = "THBBankDirect" // 公司账户渠道
-	} else if req.CurrencyCoinName == "IDR" {
-		params["channelCode"] = "JYBankDirect" // 公司账户渠道
-	} else if req.CurrencyCoinName == "INR" {
-		params["channelCode"] = "JAZBankPayout"
+	if req.CurrencyCoinName == "INR" {
+		params["paymentType"] = "BankPayout"
 	} else {
-		params["channelCode"] = "BankDirect" //写死
+		params["paymentType"] = "BankDirect" //写死
 	}
 
+	params2 := make(map[string]interface{})
+	lo.ForEach(lo.Keys(params), func(k string, i int) {
+		if v, ok := params[k]; ok && v != "" {
+			params2[k] = v
+		}
+	})
+
 	//签名
-	signStr := utils.Sign(params, cli.Params.AccessKey)
-	params["signature"] = signStr
+	signStr := utils.Sign(params, cli.Params.AccessKey, req.CurrencyCoinName)
+	params2["signature"] = signStr
 
 	//返回值会放到这里
 	var result ExglobalWithdrawResponse
@@ -37,7 +41,7 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 		SetCloseConnection(true).
 		R().
 		SetHeaders(getHeaders()).
-		SetBody(params).
+		SetBody(params2).
 		SetDebug(cli.debugMode).
 		SetResult(&result).
 		Post(rawURL)

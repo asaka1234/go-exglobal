@@ -105,6 +105,8 @@ type ExglobalWithdrawReq struct {
 	CustomerPhone    string `json:"customerPhone" mapstructure:"customerPhone"` // 客户手机号 用于：INR、IDR
 	CustomerEmail    string `json:"customerEmail" mapstructure:"customerEmail"` // 客户邮箱 用于：IDR
 	Memo             string `json:"memo" mapstructure:"memo"`                   // 备注 IDR必填
+	PaymentType      string `json:"paymentType" mapstructure:"paymentType"`     // 支付方式（例如：BankDirect）VND、THB、IDR、INR
+
 	//以下sdk帮搞
 	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户编码
 	//ChannelCode      string `json:"channelCode" mapstructure:"channelCode"` //写死 BankDirect

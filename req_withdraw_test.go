@@ -20,36 +20,25 @@ func TestWithdraw(t *testing.T) {
 }
 
 func GenWithdrawRequestDemo() ExglobalWithdrawReq {
-	// vnd
+
+	// INR
+	// amount=1&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=INR&customerPhone=43623326&merchantOrderNo=111&paymentType=BankPayout&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
 	//return ExglobalWithdrawReq{
-	//	MerchantOrderNo:  "111",
-	//	CurrencyCoinName: "VND", //"VND",
-	//	//ChannelCode:      "BankDirect", ////网银扫码:ScanQRCode, 银行直连:BankDirect
-	//	Amount:         "100000000",
-	//	BankCode:       "ACB",
-	//	BankName:       "ACB",
-	//	BankBranchName: "aa",
-	//	BankUserName:   "cy",
-	//	BankAccount:    "107719719971",
+	//	MerchantOrderNo:  "20254682736802",
+	//	CurrencyCoinName: "INR",
+	//	Amount:           "100",
+	//	BankName:         "ACB",
+	//	BankBranchName:   "aa",
+	//	BankUserName:     "jane",
+	//	BankAccount:      "107719719971",
+	//	CustomerPhone:    "43623326",
+	//	Memo:             "test",
 	//}
 
-	// THB
-	//return ExglobalWithdrawReq{
-	//	MerchantOrderNo:  "1742913308094",
-	//	CurrencyCoinName: "THB", //"VND",
-	//	//ChannelCode:      "BankDirect", ////网银扫码:ScanQRCode, 银行直连:BankDirect
-	//	Amount:         "100000",
-	//	BankName:       "ธนาคารกรุงศรีอยุธยา(Bank of Ayudhaya Public Company Limited)",
-	//	BankCode:       "BAY",
-	//	BankBranchName: "aa",
-	//	BankUserName:   "jane",
-	//	BankAccount:    "107719719971",
-	//	Memo:           "test",
-	//}
-
-	// IDR
+	// IDR  ==> amount low credit
+	// amount=100000&bankAccount=107719719971&bankBranchName=Bank Maybank&bankCode=016&bankName=Bank Maybank&bankUserName=jane&currencyCoinName=IDR&customerEmail=jane.y@logtec.com&customerPhone=43623326&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
 	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "111",
+		MerchantOrderNo:  "202512015270938",
 		CurrencyCoinName: "IDR",
 		Amount:           "100000",
 		BankCode:         "016",
@@ -62,18 +51,30 @@ func GenWithdrawRequestDemo() ExglobalWithdrawReq {
 		Memo:             "test",
 	}
 
-	// INR
+	// vnd
+	//amount=100000000&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=VND&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
 	//return ExglobalWithdrawReq{
-	//	MerchantOrderNo:  "111",
-	//	CurrencyCoinName: "INR", //"VND",
-	//	//ChannelCode:      "BankDirect", ////网银扫码:ScanQRCode, 银行直连:BankDirect
-	//	Amount:         "1",
-	//	BankCode:       "ACB",
-	//	BankName:       "ACB",
-	//	BankBranchName: "aa",
-	//	BankUserName:   "cy",
-	//	BankAccount:    "107719719971",
-	//	CustomerPhone:  "43623326",
-	//	Memo:           "test",
+	//	MerchantOrderNo:  "20251211092816855",
+	//	CurrencyCoinName: "VND", //"VND",
+	//	Amount:           "100000000",
+	//	BankName:         "ACB - NGAN HANG TMCP A CHAU (ACB)",
+	//	BankBranchName:   "ACB",
+	//	BankUserName:     "jane",
+	//	BankAccount:      "107719719971",
 	//}
+
+	// THB  ==> amount low credit
+	// amount=100000&bankAccount=107719719971&bankBranchName=aa&bankCode=BAY&bankName=ธนาคารกรุงศรีอยุธยา(Bank of Ayudhaya Public Company Limited)&bankUserName=jane&currencyCoinName=THB&merchantOrderNo=1742913308094&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
+	//return ExglobalWithdrawReq{
+	//	MerchantOrderNo:  "1742913308094",
+	//	CurrencyCoinName: "THB", //"VND",
+	//	Amount:           "100000",
+	//	BankName:         "ธนาคารกรุงศรีอยุธยา(Bank of Ayudhaya Public Company Limited)",
+	//	BankCode:         "BAY",
+	//	BankBranchName:   "aa",
+	//	BankUserName:     "jane",
+	//	BankAccount:      "107719719971",
+	//	Memo:             "test",
+	//}
+
 }

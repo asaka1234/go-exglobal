@@ -20,7 +20,7 @@ func (cli *Client) DepositAggregate(req ExglobalDepositAggregateReq) (*ExglobalD
 	params["uid"] = cli.Params.MerchantId
 
 	//签名
-	signStr := utils.Sign(params, cli.Params.AccessKey)
+	signStr := utils.Sign(params, cli.Params.AccessKey, req.CurrencyCoinName)
 	params["signature"] = signStr
 
 	//返回值会放到这里
