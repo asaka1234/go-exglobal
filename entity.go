@@ -145,3 +145,21 @@ type ExglobalWithdrawBackResp struct {
 	Message string `json:"message" mapstructure:"message"`
 	Data    string `json:"data" mapstructure:"data"`
 }
+
+type ExglobalBankListReq struct {
+	Uid         int64  `json:"uid" mapstructure:"uid"`                 // 商户编号（参与签名）
+	PaymentType string `json:"paymentType" mapstructure:"paymentType"` // 支付方式（不参与签名，必填）
+	CoinName    string `json:"coinName" mapstructure:"coinName"`       // 币种：例如：VND（不参与签名，必填）
+	Signature   string `json:"signature" mapstructure:"signature"`     // 签名
+}
+
+type Banks struct {
+	BankCode string `json:"bankCode" mapstructure:"bankCode"` //银行编码
+	BankName string `json:"bankName" mapstructure:"bankName"` //银行名称
+}
+
+type ExglobalBankListRsp struct {
+	Code    int32   `json:"code" mapstructure:"code"`
+	Message string  `json:"message" mapstructure:"message"`
+	Data    []Banks `json:"data" mapstructure:"data"`
+}
