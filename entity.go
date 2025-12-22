@@ -163,3 +163,45 @@ type ExglobalBankListRsp struct {
 	Message string  `json:"message" mapstructure:"message"`
 	Data    []Banks `json:"data" mapstructure:"data"`
 }
+
+// ---------------------------------
+// 入金升级veepay
+// 创建代收
+type ExglobalRechargeReq struct {
+	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
+	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
+	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
+	PaymentMethod    int     `json:"paymentMethod" mapstructure:"paymentMethod"`       //枚举: 1->JSON,3->平台收银台
+	CustomerName     string  `json:"customerName" mapstructure:"customerName"`         //客户姓名（只IDR币种需要）
+	CustomerEmail    string  `json:"customerEmail" mapstructure:"customerEmail"`       //客户邮箱（只IDR币种需要）
+	CustomerPhone    string  `json:"customerPhone" mapstructure:"customerPhone"`       //客户手机号（只IDR币种需要）
+	Memo             string  `json:"memo" mapstructure:"memo"`                         //备注（只IDR币种需要）
+	//SDK帮计算
+	//Signature string `json:"signature" mapstructure:"signature"` //签名
+	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
+	//BankCode string `json:"bankCode" mapstructure:"bankCode"` //option, 如果用 ScanQRCode, 则这里填 AllBanksSupported
+	//ChannelCode      string  `json:"channelCode" mapstructure:"channelCode"`           //网银扫码:ScanQRCode, 银行直连:BankDirect
+}
+
+// 创建收银台代收
+type ExglobalRechargeOnPlatformReq struct {
+	MerchantOrderNo  string  `json:"merchantOrderNo" mapstructure:"merchantOrderNo"`   //商户订单号CurrencyCoinName string `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持VND
+	CurrencyCoinName string  `json:"currencyCoinName" mapstructure:"currencyCoinName"` //支持 VND
+	Amount           float64 `json:"amount" mapstructure:"amount"`                     //不支持小数
+	//SDK帮计算
+	//Signature string `json:"signature" mapstructure:"signature"` //签名
+	//UID       int64  `json:"uid" mapstructure:"uid"`             //商户号
+}
+
+type ExglobalRechargeOnPlatformRsp struct {
+	Code    int    `json:"code" mapstructure:"code"`       // 1是成功
+	Success bool   `json:"success" mapstructure:"success"` //true
+	Message string `json:"message" mapstructure:"message"`
+	Data    struct {
+		UID             string `json:"uid" mapstructure:"uid"`                         //商户号
+		MerchantOrderNo string `json:"merchantOrderNo" mapstructure:"merchantOrderNo"` //商户订单号
+		Amount          int64  `json:"amount" mapstructure:"amount"`                   //订单金额
+		URL             string `json:"url" mapstructure:"url"`                         //收银台地址
+		Signature       string `json:"signature" mapstructure:"signature"`
+	} `json:"data" mapstructure:"data"`
+}
