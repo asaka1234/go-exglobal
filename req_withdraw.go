@@ -19,6 +19,8 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	params["uid"] = cli.Params.MerchantId
 	if req.CurrencyCoinName == "INR" {
 		params["paymentType"] = "BankPayout"
+	} else if req.CurrencyCoinName == "PHP" {
+		params["paymentType"] = "BankTransfer"
 	} else {
 		params["paymentType"] = "BankDirect" //写死
 	}

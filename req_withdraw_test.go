@@ -20,6 +20,43 @@ func TestWithdraw(t *testing.T) {
 }
 
 func GenWithdrawRequestDemo() ExglobalWithdrawReq {
+	// php
+	return ExglobalWithdrawReq{
+		MerchantOrderNo:  "202512110928168556",
+		CurrencyCoinName: "PHP",
+		Amount:           "200",
+		BankUserName:     "jane",
+		BankAccount:      "107719719971",
+		BankCode:         "MAYA",
+		BankName:         "maya",
+		BankBranchName:   "156165",
+		Memo:             "test",
+	}
+
+	// vnd
+	//amount=100000000&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=VND&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
+	//return ExglobalWithdrawReq{
+	//	MerchantOrderNo:  "20251211092816855",
+	//	CurrencyCoinName: "VND", //"VND",
+	//	Amount:           "100000000",
+	//	//BankName:         "ACB - NGAN HANG TMCP A CHAU (ACB)",
+	//	//BankBranchName:   "ACB",
+	//	BankUserName: "jane",
+	//	BankAccount:  "107719719971",
+	//	Memo:         "test",
+	//}
+
+	//{
+	//	"amount": "131935",
+	//	"bankAccount": "845574",
+	//	"bankUserName": "feng",
+	//	"currencyCoinName": "VND",
+	//	"memo": "prod",
+	//	"merchantOrderNo": "202512220318060792",
+	//	"paymentType": "BankDirect",
+	//	"signature": "926253db582f3fb6c7329857cb1a5a91",
+	//	"uid": 5588506
+	//}
 
 	// INR
 	// amount=1&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=INR&customerPhone=43623326&merchantOrderNo=111&paymentType=BankPayout&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
