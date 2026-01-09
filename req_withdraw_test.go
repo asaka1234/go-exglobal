@@ -20,18 +20,30 @@ func TestWithdraw(t *testing.T) {
 }
 
 func GenWithdrawRequestDemo() ExglobalWithdrawReq {
-	// php
 	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "202512110928168556",
-		CurrencyCoinName: "PHP",
-		Amount:           "200",
+		MerchantOrderNo:  "2025468273680231",
+		CurrencyCoinName: "INR",
+		Amount:           "2005",
+		BankName:         "ACB",
+		BankBranchName:   "AIRP0000001",
 		BankUserName:     "jane",
 		BankAccount:      "107719719971",
-		BankCode:         "MAYA",
-		BankName:         "maya",
-		BankBranchName:   "156165",
+		CustomerPhone:    "43623326",
 		Memo:             "test",
 	}
+
+	// php
+	//return ExglobalWithdrawReq{
+	//	MerchantOrderNo:  "202512110928168559",
+	//	CurrencyCoinName: "PHP",
+	//	Amount:           "200",
+	//	BankUserName:     "jane",
+	//	BankAccount:      "107719719971",
+	//	BankCode:         "",
+	//	BankName:         "",
+	//	BankBranchName:   "",
+	//	Memo:             "test",
+	//}
 
 	// vnd
 	//amount=100000000&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=VND&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
@@ -74,30 +86,18 @@ func GenWithdrawRequestDemo() ExglobalWithdrawReq {
 
 	// IDR  ==> amount low credit
 	// amount=100000&bankAccount=107719719971&bankBranchName=Bank Maybank&bankCode=016&bankName=Bank Maybank&bankUserName=jane&currencyCoinName=IDR&customerEmail=jane.y@logtec.com&customerPhone=43623326&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
-	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "202512015270938",
-		CurrencyCoinName: "IDR",
-		Amount:           "100000",
-		BankCode:         "016",
-		BankName:         "Bank Maybank",
-		BankBranchName:   "Bank Maybank",
-		BankUserName:     "jane",
-		BankAccount:      "107719719971",
-		CustomerPhone:    "43623326",
-		CustomerEmail:    "jane.y@logtec.com",
-		Memo:             "test",
-	}
-
-	// vnd
-	//amount=100000000&bankAccount=107719719971&bankBranchName=aa&bankName=ACB&bankUserName=cy&currencyCoinName=VND&merchantOrderNo=111&paymentType=BankDirect&uid=5588506&key=M2gjZTVutMlhtHYygMnKFQHh58JNW0zm
 	//return ExglobalWithdrawReq{
-	//	MerchantOrderNo:  "20251211092816855",
-	//	CurrencyCoinName: "VND", //"VND",
-	//	Amount:           "100000000",
-	//	BankName:         "ACB - NGAN HANG TMCP A CHAU (ACB)",
-	//	BankBranchName:   "ACB",
+	//	MerchantOrderNo:  "202512015270938",
+	//	CurrencyCoinName: "IDR",
+	//	Amount:           "100000",
+	//	BankCode:         "016",
+	//	BankName:         "Bank Maybank",
+	//	BankBranchName:   "Bank Maybank",
 	//	BankUserName:     "jane",
 	//	BankAccount:      "107719719971",
+	//	CustomerPhone:    "43623326",
+	//	CustomerEmail:    "jane.y@logtec.com",
+	//	Memo:             "test",
 	//}
 
 	// THB  ==> amount low credit

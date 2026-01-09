@@ -8,7 +8,7 @@ import (
 func TestClient_RechargeOnPlatform(t *testing.T) {
 	vLog := VLog{}
 	//构造client
-	cli := NewClient(vLog, &ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL, PAYIN_BANKLIST_URL, PAYOUT_BANKLIST_URL})
+	cli := NewClient(vLog, &ExglobalInitParams{MERCHANT_ID, ACCESS_SECRET, BACK_SECRET, DEPOSIT_URL, WITHDRAW_URL})
 
 	//发请求
 	resp, err := cli.RechargeOnPlatform(GenRechargeOnPlateformRequestDemo())
