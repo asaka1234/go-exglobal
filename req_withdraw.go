@@ -21,6 +21,8 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 		params["paymentType"] = "BankPayout"
 	} else if req.CurrencyCoinName == "PHP" {
 		params["paymentType"] = "BankTransfer"
+	} else if req.CurrencyCoinName == "JPY" {
+		params["paymentType"] = "VirtualAccount"
 	} else {
 		params["paymentType"] = "BankDirect" //写死
 	}
