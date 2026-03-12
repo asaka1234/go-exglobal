@@ -1,5 +1,19 @@
 package go_exglobal
 
+var (
+	// cpti
+	MERCHANT_ID   = int64(5588432)
+	ACCESS_SECRET = "AUWAwePaoiOXetbpv2q7XJsevtCnUE9V"
+	BACK_SECRET   = "rKQvFaqqJGxmyZtfd1qlC7TNJ9rLzBcK"
+
+	// vaha
+	//MERCHANT_ID   = int64(5588506)
+	//ACCESS_SECRET = "M2gjZTVutMlhtHYygMnKFQHh58JNW0zm"
+	//BACK_SECRET   = "503QFii4g12ZBkgHF7VBp6wQGyhVsTEj"
+	DEPOSIT_URL  = "https://api.exlinked.global/coin/pay/recharge/order/create"
+	WITHDRAW_URL = "https://api.exlinked.global/coin/pay/withdraw/order/create"
+)
+
 type ExGlobalBankCode struct {
 	Currency       string `json:"currency"`
 	ClientBankCode string `json:"clientBankCode"`
@@ -175,7 +189,8 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"IDR", "BMEG", "426", "Bank Mega", "JYBankDirect"},
 	{"IDR", "MAYO", "553", "Bank Mayora Indonesia", "JYBankDirect"},
 	{"IDR", "BSID", "947", "Bank Maybank Syariah Indonesia", "JYBankDirect"},
-	{"IDR", "", "016", "Bank Maybank", "JYBankDirect"},
+	{"IDR", "MAIS", "947", "Bank Maybank Syariah Indonesia", "JYBankDirect"},
+	{"IDR", "MASY", "016", "Bank Maybank", "JYBankDirect"},
 	{"IDR", "BMI", "097", "Bank Mayapada", "JYBankDirect"},
 	{"IDR", "", "157", "Bank Maspion Indonesia", "JYBankDirect"},
 	{"IDR", "", "548", "Bank Multi Arta Sentosa(MAS)", "JYBankDirect"},
@@ -211,8 +226,8 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"IDR", "", "111", "Bank DKI", "JYBankDirect"},
 	{"IDR", "", "526", "Bank Dinar Indonesia", "JYBankDirect"},
 	{"IDR", "DBS", "046", "Bank DBS Indonesia", "JYBankDirect"},
-	{"IDR", "", "0110", "Bank Danamon UUS", "JYBankDirect"},
-	{"IDR", "", "011", "Bank Danamon", "JYBankDirect"},
+	{"IDR", "BDI", "0110", "Bank Danamon UUS", "JYBankDirect"},
+	{"IDR", "BDI", "011", "Bank Danamon", "JYBankDirect"},
 	{"IDR", "", "112", "BPD DIY", "JYBankDirect"},
 	{"IDR", "BCOM", "950", "Bank Commonwealth", "JYBankDirect"},
 	{"IDR", "CITI", "031", "Citibank", "JYBankDirect"},
@@ -235,6 +250,7 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"IDR", "BRI", "002", "Bank Rakyat Indonesia(BRI)", "JYBankDirect"},
 	{"IDR", "", "069", "BANK OF CHINA LIMITED", "JYBankDirect"},
 	{"IDR", "BBNS", "427", "Bank BNI Syariah", "JYBankDirect"},
+	{"IDR", "BNI", "427", "Bank BNI Syariah", "JYBankDirect"},
 	{"IDR", "", "009", "Bank Negara Indonesia(BNI)", "JYBankDirect"},
 	{"IDR", "BJB_SYR", "425", "Bank BJB Syariah", "JYBankDirect"},
 	{"IDR", "", "110", "Bank Jawa Barat(BJB)", "JYBankDirect"},
@@ -349,4 +365,23 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"PHP", "OMNIPAY", "OMNIPAY", "omnipay", "SpDfBank"},
 	{"PHP", "MAYA", "MAYA", "maya", "SpDfBank"},
 	{"PHP", "GCASH", "GCASH", "gcash", "SpDfBank"},
+
+	{"MYR", "AMB", "ARBKMYKL", "AMBANK", "NovaPayPayout"},
+	{"MYR", "PBB", "PBBEMYKL", "Public Bank", "NovaPayPayout"},
+	{"MYR", "BKRMMYKL", "BKRMMYKL", "Bank Rakyat", "NovaPayPayout"},
+	{"MYR", "ALB", "MFBBMYKL", "Alliance Bank", "NovaPayPayout"},
+	{"MYR", "MBB", "MBBEMYKL", "Maybank2U", "NovaPayPayout"},
+	{"MYR", "BIMBMYKL", "BIMBMYKL", "Bank Islam", "NovaPayPayout"},
+	{"MYR", "BMMBMYKL", "BMMBMYKL", "Bank Muamalat", "NovaPayPayout"},
+	{"MYR", "KFHOMYKL", "KFHOMYKL", "Kuwait Finance House", "NovaPayPayout"},
+	{"MYR", "AFF", "PHBMMYKL", "Affin Bank", "NovaPayPayout"},
+	{"MYR", "RHB", "RHBBMYKL", "RHB Bank", "NovaPayPayout"},
+	{"MYR", "OCBC", "OCBCMYKL", "OCBC Bank", "NovaPayPayout"},
+	{"MYR", "SCTB", "SCBLMYKX", "Standard Chartered Bank", "NovaPayPayout"},
+	{"MYR", "HLB", "HLBBMYKL", "Hong Leong Bank", "NovaPayPayout"},
+	{"MYR", "UOB", "UOVBMYKL", "UOB", "NovaPayPayout"},
+	{"MYR", "CIMB", "CIBBMYKL", "CIMB Clicks", "NovaPayPayout"},
+	{"MYR", "BSN", "BSNAMYK1", "Bank Simpanan National", "NovaPayPayout"},
+	{"MYR", "HSBC", "HBMBMYKL", "HSBC Bank", "NovaPayPayout"},
+	{"MYR", "AGOBMYKL", "AGOBMYKL", "AGROBANK", "NovaPayPayout"},
 }
