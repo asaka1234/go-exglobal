@@ -21,8 +21,14 @@ func TestClient_RechargeOnPlatform(t *testing.T) {
 
 func GenRechargeOnPlateformRequestDemo() ExglobalRechargeOnPlatformReq {
 	return ExglobalRechargeOnPlatformReq{
-		MerchantOrderNo:  "20251222039384591", //商户id
-		CurrencyCoinName: "INR",
+		MerchantOrderNo:  "20251222039384595",
+		CurrencyCoinName: "JPY",
 		Amount:           100000,
 	}
+
+	// return ExglobalRechargeOnPlatformReq{
+	// 	MerchantOrderNo:  "20251222039384591", //商户id
+	// 	CurrencyCoinName: "INR",
+	// 	Amount:           100000,
+	// }
 }

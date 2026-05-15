@@ -19,18 +19,96 @@ func TestWithdraw(t *testing.T) {
 	fmt.Printf("resp:%+v\n", resp)
 }
 
+// [rawString]amount=8365&bankAccount=6767484&bankBranchName=鹿兒島銀行&bankName=鹿兒島銀行&bankUserName=jane jane&currencyCoinName=JPY&customerPhone=43623326&merchantOrderNo=202603161237070802&paymentType=VirtualAccount&uid=5588432&key=AUWAwePaoiOXetbpv2q7XJsevtCnUE9V
+
 func GenWithdrawRequestDemo() ExglobalWithdrawReq {
+
+	// KRW 韩国
 	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "2025468273680231",
-		CurrencyCoinName: "INR",
-		Amount:           "2005",
-		BankName:         "ACB",
-		BankBranchName:   "AIRP0000001",
+		MerchantOrderNo:  "202603161237070808",
+		CurrencyCoinName: "KRW",
+		Amount:           "8000",
+		BankCode:         "BOK",
+		BankName:         "한국은행(BankofKorea)",
+		BankBranchName:   "BOK",
 		BankUserName:     "jane",
-		BankAccount:      "107719719971",
+		BankAccount:      "6767484",
+		CustomerEmail:    "afsf@gmail.com",
 		CustomerPhone:    "43623326",
-		Memo:             "test",
+		Memo:             "prod",
 	}
+
+	// BRL
+	// return ExglobalWithdrawReq{
+	// 	MerchantOrderNo:  "202603161237070809",
+	// 	CurrencyCoinName: "BRL",
+	// 	Amount:           "8000",
+	// 	BankCode:         "CPF",
+	// 	BankName:         "CPF",
+	// 	BankBranchName:   "KARACHI BRANCH",
+	// 	BankUserName:     "jane jane",
+	// 	BankAccount:      "6767484",
+	// 	// CustomerEmail:    "afsf@gmail.com",
+	// 	// CustomerPhone: "43623326",
+	// 	Memo: "prod",
+	// }
+
+	// PKR
+	// return ExglobalWithdrawReq{
+	// 	MerchantOrderNo:  "202603161237070808",
+	// 	CurrencyCoinName: "PKR",
+	// 	Amount:           "8000",
+	// 	BankCode:         "HBL",
+	// 	BankName:         "HBL",
+	// 	BankBranchName:   "KARACHI BRANCH",
+	// 	BankUserName:     "jane jane",
+	// 	BankAccount:      "6767484",
+	// 	CustomerEmail:    "afsf@gmail.com",
+	// 	CustomerPhone:    "43623326",
+	// 	Memo:             "prod",
+	// }
+
+	// JPY
+	// 	{
+	//    "amount": "8365",
+	//    "bankAccount": "6767484",
+	//    "bankBranchName": "鹿兒島銀行",
+	//    "bankCode": "鹿兒島銀行",
+	//    "bankName": "鹿兒島銀行",
+	//    "bankUserName": "jane jane",
+	//    "currencyCoinName": "JPY",
+	//    "memo": "prod",
+	//    "merchantOrderNo": "202603161237070801",
+	//    "paymentType": "VirtualAccount",
+	//    "signature": "c612b81619b813120d120a7291e76981",
+	//    "uid": 5588789
+	// }
+
+	return ExglobalWithdrawReq{
+		MerchantOrderNo:  "202603161237070802",
+		CurrencyCoinName: "JPY",
+		Amount:           "8000",
+		BankCode:         "鹿兒島銀行",
+		BankName:         "鹿兒島銀行",
+		BankBranchName:   "鹿兒島銀行",
+		BankUserName:     "jane jane",
+		BankAccount:      "6767484",
+		CustomerEmail:    "afsf@gmail.com",
+		CustomerPhone:    "43623326",
+		Memo:             "prod",
+	}
+
+	// return ExglobalWithdrawReq{
+	// 	MerchantOrderNo:  "2025468273680231",
+	// 	CurrencyCoinName: "INR",
+	// 	Amount:           "2005",
+	// 	BankName:         "ACB",
+	// 	BankBranchName:   "AIRP0000001",
+	// 	BankUserName:     "jane",
+	// 	BankAccount:      "107719719971",
+	// 	CustomerPhone:    "43623326",
+	// 	Memo:             "test",
+	// }
 
 	// php
 	//return ExglobalWithdrawReq{

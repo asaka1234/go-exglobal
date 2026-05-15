@@ -3,6 +3,7 @@ package go_exglobal
 import (
 	"crypto/tls"
 	"fmt"
+
 	"github.com/asaka1234/go-exglobal/utils"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/mitchellh/mapstructure"
@@ -19,9 +20,9 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 	params["uid"] = cli.Params.MerchantId
 	if req.CurrencyCoinName == "INR" {
 		params["paymentType"] = "BankPayout"
-	} else if req.CurrencyCoinName == "PHP" {
+	} else if req.CurrencyCoinName == "PHP" || req.CurrencyCoinName == "BRL" {
 		params["paymentType"] = "BankTransfer"
-	} else if req.CurrencyCoinName == "JPY" {
+	} else if req.CurrencyCoinName == "JPY" || req.CurrencyCoinName == "KRW" {
 		params["paymentType"] = "VirtualAccount"
 	} else if req.CurrencyCoinName == "MYR" {
 		params["paymentType"] = "BankTransfer"
