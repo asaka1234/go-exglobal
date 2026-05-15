@@ -1,18 +1,6 @@
 package go_exglobal
 
-var (
-	// cpti
-	MERCHANT_ID   = int64(5588432)
-	ACCESS_SECRET = "AUWAwePaoiOXetbpv2q7XJsevtCnUE9V"
-	BACK_SECRET   = "rKQvFaqqJGxmyZtfd1qlC7TNJ9rLzBcK"
-
-	// vaha
-	//MERCHANT_ID   = int64(5588506)
-	//ACCESS_SECRET = "M2gjZTVutMlhtHYygMnKFQHh58JNW0zm"
-	//BACK_SECRET   = "503QFii4g12ZBkgHF7VBp6wQGyhVsTEj"
-	DEPOSIT_URL  = "https://api.exlinked.global/coin/pay/recharge/order/create"
-	WITHDRAW_URL = "https://api.exlinked.global/coin/pay/withdraw/order/create"
-)
+var ()
 
 type ExGlobalBankCode struct {
 	Currency       string `json:"currency"`
@@ -384,4 +372,74 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"MYR", "BSN", "BSNAMYK1", "Bank Simpanan National", "NovaPayPayout"},
 	{"MYR", "HSBC", "HBMBMYKL", "HSBC Bank", "NovaPayPayout"},
 	{"MYR", "AGOBMYKL", "AGOBMYKL", "AGROBANK", "NovaPayPayout"},
+
+	// KRW - PNKrwVa
+	{"KRW", "BOK", "BOK", "한국은행(BankOfKorea)", "PNKrwVa"},
+	{"KRW", "KEBHB", "KEBHB", "KEB하나은행(KEBHanaBank)", "PNKrwVa"},
+	{"KRW", "SUHYUP", "SUHYUP", "수협은행(SuhyupBank)", "PNKrwVa"},
+	{"KRW", "CONSTRUCTION", "CONSTRUCTION", "중국건설은행(ChinaConstructionBank)", "PNKrwVa"},
+	{"KRW", "FORESTRY", "FORESTRY", "산림조합(NationalForestryCooperativeFederation)", "PNKrwVa"},
+	{"KRW", "BANK_OF_CHINA", "BANK_OF_CHINA", "중국은행(BankofChina)", "PNKrwVa"},
+	{"KRW", "ICBC", "ICBC", "중국공상은행(IndustrialandCommercialBankofChina)", "PNKrwVa"},
+	{"KRW", "BNP", "BNP", "BNP파리바은행(BNPParibasBank)", "PNKrwVa"},
+	{"KRW", "BOA", "BOA", "뱅크오브아메리카(BOABank)", "PNKrwVa"},
+	{"KRW", "JPMORGAN", "JPMORGAN", "JP모건체이스은행(JPMorganChaseBank)", "PNKrwVa"},
+	{"KRW", "DEUTSCHE", "DEUTSCHE", "도이치뱅크(DeutscheBank)", "PNKrwVa"},
+	{"KRW", "HSBC", "HSBC", "HSBC은행(HSBCBank)", "PNKrwVa"},
+	{"KRW", "SAVING_BANK", "SAVING_BANK", "저축은행(SavingBank)", "PNKrwVa"},
+	{"KRW", "KYONGNAM", "KYONGNAM", "경남은행(KyongnamBank)", "PNKrwVa"},
+	{"KRW", "JEONBUK", "JEONBUK", "전북은행(JeonbukBank)", "PNKrwVa"},
+	{"KRW", "JEJU", "JEJU", "제주은행(JejuBank)", "PNKrwVa"},
+	{"KRW", "GWANGJU", "GWANGJU", "광주은행(GwangjuBank)", "PNKrwVa"},
+	{"KRW", "BUSAN", "BUSAN", "BNK부산은행(BNKBusanBank)", "PNKrwVa"},
+	{"KRW", "DAEGU", "DAEGU", "대구은행(DaeguBank)", "PNKrwVa"},
+	{"KRW", "SC", "SC", "SC제일은행(StandardCharteredFirstBankKorea)", "PNKrwVa"},
+	{"KRW", "TOSS_BANK", "TOSS_BANK", "토스뱅크(TossBank)", "PNKrwVa"},
+	{"KRW", "K_BANK", "K_BANK", "케이뱅크(KBank)", "PNKrwVa"},
+	{"KRW", "KAKAO_BANK", "KAKAO_BANK", "카카오뱅크(KakaoBank)", "PNKrwVa"},
+	{"KRW", "KDB", "KDB", "KDB산업은행(KoreaDevelopmentBank)", "PNKrwVa"},
+	{"KRW", "IBK", "IBK", "IBK기업은행(IndustrialBankofKorea)", "PNKrwVa"},
+	{"KRW", "POST_OFFICE", "POST_OFFICE", "우체국(KoreaPostOffice)", "PNKrwVa"},
+	{"KRW", "SINHYUP", "SINHYUP", "신협(NationalCreditUnionFederationofKorea)", "PNKrwVa"},
+	{"KRW", "SAEMAUL", "SAEMAUL", "새마을금고(KoreaFederationofCommunityCreditCooperative)", "PNKrwVa"},
+	{"KRW", "CITI", "CITI", "씨티은행(CitibankKorea)", "PNKrwVa"},
+	{"KRW", "NONGHYUP", "NONGHYUP", "NH농협(NH Nonghyup Bank)", "PNKrwVa"},
+	{"KRW", "KOOKMIN", "KOOKMIN", "국민은행(KookminBank)", "PNKrwVa"},
+	{"KRW", "WOORI", "WOORI", "우리은행(WooriBank)", "PNKrwVa"},
+	{"KRW", "SHINHAN", "SHINHAN", "신한은행(ShinhanBank)", "PNKrwVa"},
+
+	// KRW - EGKrwVa
+	{"KRW", "BOK", "BOK", "한국은행(BankofKorea)", "EGKrwVa"},
+	{"KRW", "KEBHB", "KEBHB", "KEB하나은행(KEBHanaBank)", "EGKrwVa"},
+	{"KRW", "SUHYUP", "SUHYUP", "수협은행(SuhyupBank)", "EGKrwVa"},
+	{"KRW", "CONSTRUCTION", "CONSTRUCTION", "중국건설은행(ChinaConstructionBank)", "EGKrwVa"},
+	{"KRW", "FORESTRY", "FORESTRY", "산림조합(NationalForestryCooperativeFederation)", "EGKrwVa"},
+	{"KRW", "BANK_OF_CHINA", "BANK_OF_CHINA", "중국은행(BankofChina)", "EGKrwVa"},
+	{"KRW", "ICBC", "ICBC", "중국공상은행(IndustrialandCommercialBankofChina)", "EGKrwVa"},
+	{"KRW", "BNP", "BNP", "BNP파리바은행(BNPParibasBank)", "EGKrwVa"},
+	{"KRW", "BOA", "BOA", "뱅크오브아메리카(BOABank)", "EGKrwVa"},
+	{"KRW", "JPMORGAN", "JPMORGAN", "JP모건체이스은행(JPMorganChaseBank)", "EGKrwVa"},
+	{"KRW", "DEUTSCHE", "DEUTSCHE", "도이치뱅크(DeutscheBank)", "EGKrwVa"},
+	{"KRW", "HSBC", "HSBC", "HSBC은행(HSBCBank)", "EGKrwVa"},
+	{"KRW", "SAVING_BANK", "SAVING_BANK", "저축은행(SavingBank)", "EGKrwVa"},
+	{"KRW", "KYONGNAM", "KYONGNAM", "경남은행(KyongnamBank)", "EGKrwVa"},
+	{"KRW", "JEONBUK", "JEONBUK", "전북은행(JeonbukBank)", "EGKrwVa"},
+	{"KRW", "JEJU", "JEJU", "제주은행(JejuBank)", "EGKrwVa"},
+	{"KRW", "GWANGJU", "GWANGJU", "광주은행(GwangjuBank)", "EGKrwVa"},
+	{"KRW", "BUSAN", "BUSAN", "BNK부산은행(BNKBusanBank)", "EGKrwVa"},
+	{"KRW", "DAEGU", "DAEGU", "대구은행(DaeguBank)", "EGKrwVa"},
+	{"KRW", "SC", "SC", "SC제일은행(StandardCharteredFirstBankKorea)", "EGKrwVa"},
+	{"KRW", "TOSS_BANK", "TOSS_BANK", "토스뱅크(TossBank)", "EGKrwVa"},
+	{"KRW", "K_BANK", "K_BANK", "케이뱅크(KBank)", "EGKrwVa"},
+	{"KRW", "KAKAO_BANK", "KAKAO_BANK", "카카오뱅크(KakaoBank)", "EGKrwVa"},
+	{"KRW", "KDB", "KDB", "KDB산업은행(KoreaDevelopmentBank)", "EGKrwVa"},
+	{"KRW", "IBK", "IBK", "IBK기업은행(IndustrialBankofKorea)", "EGKrwVa"},
+	{"KRW", "POST_OFFICE", "POST_OFFICE", "우체국(KoreaPostOffice)", "EGKrwVa"},
+	{"KRW", "SINHYUP", "SINHYUP", "신협(NationalCreditUnionFederationofKorea)", "EGKrwVa"},
+	{"KRW", "SAEMAUL", "SAEMAUL", "새마을금고(KoreaFederationofCommunityCreditCooperative)", "EGKrwVa"},
+	{"KRW", "CITI", "CITI", "씨티은행(CitibankKorea)", "EGKrwVa"},
+	{"KRW", "NONGHYUP", "NONGHYUP", "NH농협(NH Nonghyup Bank)", "EGKrwVa"},
+	{"KRW", "KOOKMIN", "KOOKMIN", "국민은행(KookminBank)", "EGKrwVa"},
+	{"KRW", "WOORI", "WOORI", "우리은행(WooriBank)", "EGKrwVa"},
+	{"KRW", "SHINHAN", "SHINHAN", "신한은행(ShinhanBank)", "EGKrwVa"},
 }

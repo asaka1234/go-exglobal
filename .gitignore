@@ -54,3 +54,5 @@ place-order.exe
 resources/kpg/
 resources/th/
 resources/demo
+const.go
+./const.go
