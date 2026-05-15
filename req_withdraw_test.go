@@ -24,18 +24,33 @@ func TestWithdraw(t *testing.T) {
 func GenWithdrawRequestDemo() ExglobalWithdrawReq {
 
 	// KRW 韩国
+	// 	{
+	//    "amount": "74210",
+	//    "bankAccount": "325236",
+	//    "bankBranchName": "BUSAN",
+	//    "bankUserName": "張三",
+	//    "currencyCoinName": "KRW",
+	//    "customerEmail": "jane.y1@yopmail.com",
+	//    "customerPhone": "1125300231651",
+	//    "memo": "prod",
+	//    "merchantOrderNo": "202605151113370550",
+	//    "paymentType": "VirtualAccount",
+	//    "signature": "c1fe7b4722100528c53e25429d669732",
+	//    "uid": 5588789
+	// }
 	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "202603161237070808",
+		MerchantOrderNo:  "202605151113370550",
 		CurrencyCoinName: "KRW",
-		Amount:           "8000",
-		BankCode:         "BOK",
-		BankName:         "한국은행(BankofKorea)",
-		BankBranchName:   "BOK",
-		BankUserName:     "jane",
-		BankAccount:      "6767484",
-		CustomerEmail:    "afsf@gmail.com",
-		CustomerPhone:    "43623326",
+		Amount:           "74210",
+		BankCode:         "KRW",
+		BankName:         "KRW",
+		BankAccount:      "325236",
+		BankBranchName:   "BUSAN",
+		BankUserName:     "張三",
+		CustomerEmail:    "jane.y1@yopmail.com",
+		CustomerPhone:    "1125300231651",
 		Memo:             "prod",
+		PaymentType:      "VirtualAccount",
 	}
 
 	// BRL

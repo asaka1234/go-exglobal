@@ -1,7 +1,5 @@
 package go_exglobal
 
-var ()
-
 type ExGlobalBankCode struct {
 	Currency       string `json:"currency"`
 	ClientBankCode string `json:"clientBankCode"`
