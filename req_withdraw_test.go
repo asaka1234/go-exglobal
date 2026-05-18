@@ -39,18 +39,18 @@ func GenWithdrawRequestDemo() ExglobalWithdrawReq {
 	//    "uid": 5588789
 	// }
 	return ExglobalWithdrawReq{
-		MerchantOrderNo:  "202605151113370550",
+		MerchantOrderNo:  "202605151113370551",
 		CurrencyCoinName: "KRW",
 		Amount:           "74210",
-		BankCode:         "KRW",
-		BankName:         "KRW",
+		BankCode:         "BUSAN",
+		BankName:         "BNK부산은행(BNKBusanBank)",
 		BankAccount:      "325236",
 		BankBranchName:   "BUSAN",
 		BankUserName:     "張三",
 		CustomerEmail:    "jane.y1@yopmail.com",
 		CustomerPhone:    "1125300231651",
 		Memo:             "prod",
-		PaymentType:      "VirtualAccount",
+		PaymentType:      "BankTransfer",
 	}
 
 	// BRL

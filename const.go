@@ -440,4 +440,11 @@ var WithdrawBankCodes = []ExGlobalBankCode{
 	{"KRW", "KOOKMIN", "KOOKMIN", "국민은행(KookminBank)", "EGKrwVa"},
 	{"KRW", "WOORI", "WOORI", "우리은행(WooriBank)", "EGKrwVa"},
 	{"KRW", "SHINHAN", "SHINHAN", "신한은행(ShinhanBank)", "EGKrwVa"},
+
+	// 巴西 BRL (PIX)
+	{"BRL", "EMAIL", "EMAIL", "EMAIL", "SpPix"},
+	{"BRL", "PHONE", "PHONE", "PHONE", "SpPix"},
+	{"BRL", "CNPJ", "CNPJ", "CNPJ", "SpPix"},
+	{"BRL", "CPF", "CPF", "CPF", "SpPix"},
+	{"BRL", "EVP", "EVP", "EVP", "PayTherePixPayout"},
 }

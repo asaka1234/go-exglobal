@@ -22,9 +22,9 @@ func (cli *Client) Withdraw(req ExglobalWithdrawReq) (*ExglobalWithdrawResponse,
 		params["paymentType"] = "BankPayout"
 	} else if req.CurrencyCoinName == "PHP" || req.CurrencyCoinName == "BRL" {
 		params["paymentType"] = "BankTransfer"
-	} else if req.CurrencyCoinName == "JPY" || req.CurrencyCoinName == "KRW" {
+	} else if req.CurrencyCoinName == "JPY" {
 		params["paymentType"] = "VirtualAccount"
-	} else if req.CurrencyCoinName == "MYR" {
+	} else if req.CurrencyCoinName == "MYR" || req.CurrencyCoinName == "KRW" {
 		params["paymentType"] = "BankTransfer"
 	} else {
 		params["paymentType"] = "BankDirect" //写死
