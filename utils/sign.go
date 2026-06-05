@@ -19,7 +19,7 @@ func Sign(params map[string]interface{}, accessKey string, ccy string) string {
 	var sb strings.Builder
 	for _, k := range keys {
 		value := cast.ToString(params[k])
-		// 通道增加了INR验签，所以去掉
+		// INR没有银行概念，但是需要bankCode参与签名
 		// if ccy == "INR" && k == "bankCode" {
 		// 	continue
 		// }
