@@ -2,10 +2,11 @@ package utils
 
 import (
 	"fmt"
-	"github.com/samber/lo"
-	"github.com/spf13/cast"
 	"sort"
 	"strings"
+
+	"github.com/samber/lo"
+	"github.com/spf13/cast"
 )
 
 // 计算请求签名
@@ -18,9 +19,10 @@ func Sign(params map[string]interface{}, accessKey string, ccy string) string {
 	var sb strings.Builder
 	for _, k := range keys {
 		value := cast.ToString(params[k])
-		if ccy == "INR" && k == "bankCode" {
-			continue
-		}
+		// 通道增加了INR验签，所以去掉
+		// if ccy == "INR" && k == "bankCode" {
+		// 	continue
+		// }
 		if k != "signature" && k != "memo" && value != "" {
 			//只有非空才可以参与签名
 			sb.WriteString(fmt.Sprintf("%s=%s&", k, value))
